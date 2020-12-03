@@ -1,5 +1,4 @@
 import {key} from "./key";
-
 let apiKey = new key();
 
 const posters = document.querySelector("#poster");
