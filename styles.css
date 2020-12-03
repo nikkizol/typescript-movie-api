@@ -7,3 +7,12 @@ html {
 body {
     background-color: black !important;
 }
+
+@font-face {
+    font-family: 'kenyan_coffeeregular';
+    /*noinspection CssUnknownTarget*/
+    src: url('./webfontkit/kenyan-coffee.regular-webfont.woff2') format('woff2'),
+    url('./webfontkit/kenyan-coffee.regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
