@@ -17,7 +17,8 @@ function formatMovie(movie: any): Movie {
 
 class MovieService {
     getMovies(title: string): Promise<Movie[]> {
-        return fetch(`http://www.omdbapi.com/?&apikey=e32b2320&s=${title}`)
+        // @ts-ignore
+        return fetch(`http://www.omdbapi.com/?&apikey=${key}&s=${title}`)
             .then(res => res.json())
             .then(res => res.Search.map((movie: any) => formatMovie(movie)))
     }
@@ -25,17 +26,20 @@ class MovieService {
 
 const apiClient = new MovieService();
 
-apiClient.getMovies("rock").then((data) => (console.log(data)));
-
 function displayMovies() {
-    apiClient.getMovies("lol").then((data) => {
+    let input = (<HTMLInputElement>document.getElementById("inputTitle")).value;
+    apiClient.getMovies(input).then((data) => {
         let movies = data;
         for (let i = 0; i < movies.length; i++) {
-            if (movies[i].poster=== "N/A"){
+            if (movies[i].poster === "N/A") {
                 movies[i].poster = "no-poster.jpg"
             }
             posters.innerHTML += '<div class="cards mt-4"><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>'
         }
     })
 }
-displayMovies()
+
+document.getElementById('run').addEventListener('click', function () {
+    posters.innerHTML = "";
+    displayMovies()
+});

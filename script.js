@@ -20,16 +20,21 @@ var MovieService = /** @class */ (function () {
     return MovieService;
 }());
 var apiClient = new MovieService();
-apiClient.getMovies("rock").then(function (data) { return (console.log(data)); });
 function displayMovies() {
-    apiClient.getMovies("lol").then(function (data) {
+    var input = document.getElementById("inputTitle").value;
+    apiClient.getMovies('lol').then(function (data) {
+        console.log(input);
         var movies = data;
         for (var i = 0; i < movies.length; i++) {
             if (movies[i].poster === "N/A") {
-                movies[i].poster = "no-poster.jpg";
+                // movies[i].poster = "no-poster.jpg"
             }
             posters.innerHTML += '<div class="cards mt-4"><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>';
         }
     });
 }
-displayMovies();
+document.getElementById('run').addEventListener('click', function () {
+    // posters.innerHTML = "";
+    console.log('input');
+    displayMovies();
+});
