@@ -63,3 +63,22 @@ h1 span {
     transform: scale(0.90);
     transition: transform .5s;
 }
+
+.cards:hover .overlay {
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0) !important;
+    background: rgba(0, 0, 0, 0.8) !important; /* Black see-through */
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    font-family: kenyan_coffeeregular, serif;
+    color: yellow !important;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}

@@ -28,7 +28,7 @@ function displayMovies() {
             if (movies[i].poster === "N/A") {
                 movies[i].poster = "no-poster.jpg";
             }
-            posters.innerHTML += '<div class="cards mt-4"> <img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>';
+            posters.innerHTML += '<div class="cards mt-4"><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>';
         }
     });
 }
