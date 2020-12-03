@@ -1,3 +1,7 @@
+import {key} from "./key";
+
+let apiKey = new key();
+
 const posters = document.querySelector("#poster");
 
 class Movie {
@@ -17,14 +21,14 @@ function formatMovie(movie: any): Movie {
 
 class MovieService {
     getMovies(title: string): Promise<Movie[]> {
-        // @ts-ignore
-        return fetch(`http://www.omdbapi.com/?&apikey=${key}&s=${title}`)
+        return fetch(`http://www.omdbapi.com/?&apikey=${apiKey.getKey()}&s=${title}`)
             .then(res => res.json())
             .then(res => res.Search.map((movie: any) => formatMovie(movie)))
     }
 }
 
 const apiClient = new MovieService();
+
 function displayMovies() {
     let input = (<HTMLInputElement>document.getElementById("inputTitle")).value;
     apiClient.getMovies(input).then((data) => {
@@ -38,7 +42,8 @@ function displayMovies() {
     })
 }
 
-document.getElementById('run').addEventListener('click', function () {
+document.getElementById('run').addEventListener('click', function (event) {
     posters.innerHTML = "";
-    displayMovies()
+    displayMovies();
+    event.preventDefault();
 });

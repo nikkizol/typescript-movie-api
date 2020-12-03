@@ -1,3 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var key_1 = require("./key");
+var apiKey = new key_1.key();
 var posters = document.querySelector("#poster");
 var Movie = /** @class */ (function () {
     function Movie(title, poster) {
@@ -13,8 +17,7 @@ var MovieService = /** @class */ (function () {
     function MovieService() {
     }
     MovieService.prototype.getMovies = function (title) {
-        // @ts-ignore
-        return fetch("http://www.omdbapi.com/?&apikey=" + key + "&s=" + title)
+        return fetch("http://www.omdbapi.com/?&apikey=" + apiKey.getKey() + "&s=" + title)
             .then(function (res) { return res.json(); })
             .then(function (res) { return res.Search.map(function (movie) { return formatMovie(movie); }); });
     };
@@ -33,7 +36,8 @@ function displayMovies() {
         }
     });
 }
-document.getElementById('run').addEventListener('click', function () {
+document.getElementById('run').addEventListener('click', function (event) {
     posters.innerHTML = "";
     displayMovies();
+    event.preventDefault();
 });
