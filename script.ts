@@ -25,7 +25,6 @@ class MovieService {
 }
 
 const apiClient = new MovieService();
-
 function displayMovies() {
     let input = (<HTMLInputElement>document.getElementById("inputTitle")).value;
     apiClient.getMovies(input).then((data) => {
