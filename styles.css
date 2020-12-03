@@ -16,6 +16,38 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+
 img {
     width: 100%;
+}
+
+h1 span {
+    background-color: #F5DE50;
+    padding: 0px 10px 0px 10px;
+    color: black;
+    border-radius: 6px;
+    font-family: kenyan_coffeeregular, serif;
+    font-weight: bold;
+    font-size: 60px;
+
+}
+
+.butn {
+    font-family: kenyan_coffeeregular, serif;
+    font-size: 20px;
+}
+
+.container1 {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    position: absolute;
+    margin-top: 10%;
+    padding-top: 100px;
+    width: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
