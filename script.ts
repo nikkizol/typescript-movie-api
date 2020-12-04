@@ -1,7 +1,9 @@
-import {key} from "./key";
-let apiKey = new key();
+import { Key } from "./Key.js";
+let apiKey = new Key();
 
-const posters = document.querySelector("#poster");
+const posters = document.querySelector("#poster")!;
+const input = (<HTMLInputElement>document.getElementById("inputTitle"));
+const errorMsg = document.getElementById("errorMsg")!;
 
 class Movie {
     title: string;
@@ -29,20 +31,23 @@ class MovieService {
 const apiClient = new MovieService();
 
 function displayMovies() {
-    let input = (<HTMLInputElement>document.getElementById("inputTitle")).value;
-    apiClient.getMovies(input).then((data) => {
+    apiClient.getMovies(input.value).then((data) => {
         let movies = data;
         for (let i = 0; i < movies.length; i++) {
             if (movies[i].poster === "N/A") {
                 movies[i].poster = "no-poster.jpg"
             }
-            posters.innerHTML += '<div class="cards mt-4"><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>'
+             posters.innerHTML += '<div class="cards mt-4"><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>'
         }
+    }).catch(error => {
+        console.error(error);
+        errorMsg.innerHTML = '<div class="alert alert-light" role="alert">' + "Please enter correct movie title" + '</div>'
     })
 }
 
-document.getElementById('run').addEventListener('click', function (event) {
-    posters.innerHTML = "";
-    displayMovies();
+document.getElementById('run')!.addEventListener('click', function (event) {
+    errorMsg.innerHTML="";
+    posters.innerHTML="";
+    displayMovies()
     event.preventDefault();
 });
