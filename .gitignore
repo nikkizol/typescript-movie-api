@@ -1,4 +1,6 @@
 .idea
 .DS_Store
-key.ts
-key.js
+Key.ts
+Key.js
+package.json
+tsconfig.json
