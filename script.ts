@@ -1,4 +1,5 @@
-import { Key } from "./Key.js";
+import {Key} from "./Key.js";
+
 let apiKey = new Key();
 
 const posters = document.querySelector("#poster")!;
@@ -8,19 +9,36 @@ const errorMsg = document.getElementById("errorMsg")!;
 class Movie {
     title: string;
     poster: string;
+    id: string;
 
-    constructor(title: string, poster: string) {
+    constructor(title: string, poster: string, id: string) {
         this.title = title;
         this.poster = poster;
+        this.id = id;
 
     }
 }
 
 function formatMovie(movie: any): Movie {
-    return {title: movie.Title, poster: movie.Poster}
+    return {title: movie.Title, poster: movie.Poster, id: movie.imdbID}
 }
 
-class MovieService {
+function openMovieOnNewPage(allPosters: any, data: any) {
+    allPosters.forEach((poster: any) => poster.addEventListener('click', function () {
+        posters.innerHTML = "";
+        const title = '';
+        displayMovies(poster.childNodes[0].firstChild.nodeValue, title)
+    }));
+}
+
+class MovieServiceById {
+    getMovies(id: string): Promise<Movie[]> {
+        return fetch(`http://www.omdbapi.com/?&apikey=${apiKey.getKey()}&i=${id}`)
+            .then(res => res.json())
+    }
+}
+
+class MovieServiceByTitle {
     getMovies(title: string): Promise<Movie[]> {
         return fetch(`http://www.omdbapi.com/?&apikey=${apiKey.getKey()}&s=${title}`)
             .then(res => res.json())
@@ -28,26 +46,46 @@ class MovieService {
     }
 }
 
-const apiClient = new MovieService();
+function selectMovieClass(id: string, title: string) {
+    let apiClient;
+    if (title == "") {
+        apiClient = new MovieServiceById().getMovies(id)
+    } else {
+        apiClient = new MovieServiceByTitle().getMovies(title)
+    }
+    return apiClient;
+}
 
-function displayMovies() {
-    apiClient.getMovies(input.value).then((data) => {
+
+function displayMovies(id: string, title: string,) {
+    selectMovieClass(id, title).then((data) => {
         let movies = data;
-        for (let i = 0; i < movies.length; i++) {
-            if (movies[i].poster === "N/A") {
-                movies[i].poster = "no-poster.jpg"
+        if (movies.length == undefined) {
+            return posters.innerHTML += '<div class="cards mt-4"><div class="movieId">' + movies.Title + '</div><div class="overlay">' + movies.Title + '</div><img style="height: 300px; width: 200px" src=' + movies.Poster + '> </src></div>'
+        } else
+            for (let i = 0; i < movies.length; i++) {
+                if (movies[i].poster === "N/A") {
+                    movies[i].poster = "no-poster.jpg"
+                }
+                posters.innerHTML += '<div class="cards mt-4"><div class="movieId">' + movies[i].id + '</div><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>'
             }
-             posters.innerHTML += '<div class="cards mt-4"><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>'
-        }
+        const allPosters = document.querySelectorAll(".cards")!;
+        openMovieOnNewPage(allPosters, movies);
+
+
+        //     posters.innerHTML += '<div class="cards mt-4"><div class="movieId">' + movies.Title + '</div><div class="overlay">' + movies.Title + '</div><img style="height: 300px; width: 200px" src=' + movies.Poster + '> </src></div>'
     }).catch(error => {
         console.error(error);
         errorMsg.innerHTML = '<div class="alert alert-light" role="alert">' + "Please enter correct movie title" + '</div>'
     })
+
 }
 
 document.getElementById('run')!.addEventListener('click', function (event) {
-    errorMsg.innerHTML="";
-    posters.innerHTML="";
-    displayMovies()
     event.preventDefault();
+    errorMsg.innerHTML = "";
+    posters.innerHTML = "";
+    const id = '';
+    displayMovies(id, input.value)
 });
+
