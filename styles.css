@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'kenyan_coffeeregular';
+    /*noinspection CssUnknownTarget*/
+    src: url('./webfontkit/kenyan-coffee.regular-webfont.woff2') format('woff2'),
+    url('./webfontkit/kenyan-coffee.regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     height: 100%;
     margin: auto;
@@ -6,15 +15,7 @@ html {
 
 body {
     background-color: black !important;
-}
-
-@font-face {
-    font-family: 'kenyan_coffeeregular';
-    /*noinspection CssUnknownTarget*/
-    src: url('./webfontkit/kenyan-coffee.regular-webfont.woff2') format('woff2'),
-    url('./webfontkit/kenyan-coffee.regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    font-family: kenyan_coffeeregular, serif !important;
 }
 
 img {
@@ -26,14 +27,14 @@ h1 span {
     padding: 0px 10px 0px 10px;
     color: black;
     border-radius: 6px;
-    font-family: kenyan_coffeeregular, serif;
+    /*font-family: kenyan_coffeeregular, serif;*/
     font-weight: bold;
     font-size: 60px;
 
 }
 
 .butn {
-    font-family: kenyan_coffeeregular, serif;
+    /*font-family: kenyan_coffeeregular, serif;*/
     font-size: 20px;
 }
 
@@ -45,7 +46,7 @@ h1 span {
 
 .centered {
     position: absolute;
-    margin-top: 10%;
+    margin-top: 15%;
     padding-top: 100px;
     width: 300px;
     left: 50%;
@@ -76,9 +77,17 @@ h1 span {
     width: 100%;
     transition: .5s ease;
     opacity: 0;
-    font-family: kenyan_coffeeregular, serif;
+    /*font-family: kenyan_coffeeregular, serif;*/
     color: yellow !important;
     font-size: 20px;
     padding: 20px;
     text-align: center;
+}
+
+#errorMsg {
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    color: white;
+    font-size: 20px;
 }
