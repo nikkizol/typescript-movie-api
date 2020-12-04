@@ -16,7 +16,7 @@
         <div class="col">
             <form class="form centered">
                 <label for="inputTitle"><h1><span>OMDb</span></h1></label>
-                <input aria-label="Search" class="form-control" id="inputTitle" placeholder="Enter movie title"
+                <input aria-label="Search" class="form-control" id="inputTitle" placeholder="Enter a movie title"
                        type="text">
                 <button class="btn btn-secondary my-2 " id="run" type="submit"><span class="butn">SEARCH</span></button>
             </form>
@@ -24,11 +24,12 @@
     </div>
 </div>
 <img src="cinema.jpg" style="width:100%; height: 500px">
+<div id="errorMsg"></div>
 <div class="container">
     <div class="row" id="poster">
     </div>
 </div>
-<script src="script.js"></script>
+<script src="script.js" type="module"></script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script crossorigin="anonymous"
