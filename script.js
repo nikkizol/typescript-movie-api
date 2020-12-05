@@ -31,10 +31,10 @@ function msgError() {
     return '<div class="alert alert-light" role="alert">' + "Please enter correct movie title" + '</div>';
 }
 function displayingMoviesInHtml(movies, i) {
-    return '<div class="cards mt-4"><div class="movieId">' + movies[i].id + '</div><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '> </src></div>';
+    return '<div class="cards mt-4"><div class="movieId">' + movies[i].id + '</div><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '></div>';
 }
 function displayingSelectedMovieInHtml(movies) {
-    return '<div class="cards mt-4"><div class="movieId">' + movies.Title + '</div><div class="overlay">' + movies.Title + '</div><img style="height: 300px; width: 200px" src=' + movies.Poster + '> </src></div>';
+    return '<div class="media"> <img class="d-flex align-self-start mr-3" style="height: 500px; width: 400px" src=' + movies.Poster + '> <div class="media-body"> <h1 class="mt-0 title">' + movies.Title + '</h1> <p>' + movies.Plot + '</p> <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p> </div> </div>';
 }
 function resetDOM() {
     errorMsg.innerHTML = "";
