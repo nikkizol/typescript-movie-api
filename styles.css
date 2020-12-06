@@ -124,3 +124,13 @@ footer {
 a:link {
     color: black !important;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a:link.imdbLink {
+    color: #F5DE50 !important;
+}

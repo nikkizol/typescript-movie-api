@@ -34,7 +34,8 @@ function displayingMoviesInHtml(movies, i) {
     return '<div class="cards mt-4"><div class="movieId">' + movies[i].id + '</div><div class="overlay">' + movies[i].title + '</div><img style="height: 300px; width: 200px" src=' + movies[i].poster + '></div>';
 }
 function displayingSelectedMovieInHtml(movies) {
-    return '<div class="media"> <img class="d-flex align-self-start mr-3" style="height: 500px; width: 400px" src=' + movies.Poster + '> <div class="media-body"> <h1 class="mt-0 title">' + movies.Title + '</h1> <p>' + movies.Plot + '</p> <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p> </div> </div>';
+    const imdbId = movies.imdbID;
+    return '<div class="media"> <img class="d-flex align-self-start mr-3" style="height: 400px; width: 300px" src=' + movies.Poster + '> <div class="media-body"> <h1 class="mt-0 title">' + movies.Title + ' (' + movies.Year + ') </h1> <ul><li> IMDb Rating: ' + movies.imdbRating + '</li><li> Country: ' + movies.Country + '</li><li> Genre: ' + movies.Genre + '</li><li> Actors: ' + movies.Actors + '</li><li>Link to IMDb: <a class="imdbLink" href=https://www.imdb.com/title/' + imdbId + '/>IMDb</a></li></ul><h5>Plot:</h5><p>' + movies.Plot + '</p></div></div>';
 }
 function resetDOM() {
     errorMsg.innerHTML = "";
